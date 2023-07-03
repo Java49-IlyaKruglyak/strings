@@ -34,11 +34,12 @@ class StringsTest {
 //		assertTrue("a1234".matches(regex));
 //		assertTrue("b1234".matches(regex));
 //		assertTrue("aa1234".matches(regex));
-
+		
+		
 	}
 	@Test
-	void JavaVariableNameTest() {
-		String regex = Strings.JavaVariableName();
+	void javaVariableNameTest() {
+		String regex = Strings.javaVariableName();
 		assertTrue("a".matches(regex));
 		assertTrue("$".matches(regex));
 		assertTrue("$2".matches(regex));
@@ -46,13 +47,15 @@ class StringsTest {
 		assertTrue("__".matches(regex));
 		assertTrue("_2".matches(regex));
 		assertTrue("a_b".matches(regex));
-		assertTrue("abc1234567890".matches(regex));
+		assertTrue("A_B".matches(regex));
+		assertTrue("abc12345678900000".matches(regex));
 		assertFalse("1a".matches(regex));
 		assertFalse("_".matches(regex));
 		assertFalse("a#".matches(regex));
 		assertFalse("a b".matches(regex));
 		assertFalse("a-b".matches(regex));
 		assertFalse(" ab".matches(regex));
+		
 	}
 	@Test
 	void zero_300Test() {
@@ -62,7 +65,6 @@ class StringsTest {
 		assertTrue("299".matches(regex));
 		assertTrue("300".matches(regex));
 		assertTrue("99".matches(regex));
-		
 		assertFalse("01".matches(regex));
 		assertFalse("00".matches(regex));
 		assertFalse("1111".matches(regex));
@@ -72,11 +74,12 @@ class StringsTest {
 		assertFalse("-1".matches(regex));
 		assertFalse("3 ".matches(regex));
 		
-		}
-	@Test
-	void ipV4Octet() {
-		String regex = Strings.ipV4Octet();
 		
+		
+	}
+	@Test
+	void ipV4OctetTest() {
+		String regex = Strings.ipV4Octet();
 		assertTrue("000".matches(regex));
 		assertTrue("00".matches(regex));
 		assertTrue("0".matches(regex));
@@ -88,31 +91,25 @@ class StringsTest {
 		assertTrue("249".matches(regex));
 		assertTrue("250".matches(regex));
 		assertTrue("255".matches(regex));
-		
 		assertFalse("0000".matches(regex));
 		assertFalse(" 1".matches(regex));
 		assertFalse(".0".matches(regex));
 		assertFalse("-1".matches(regex));
 		assertFalse("256".matches(regex));
 		assertFalse("1000".matches(regex));
-		
-		
 	}
 	@Test
-	void ipV4Test() {
+	void IpV4Test() {
 		String regex = Strings.ipV4();
-		
 		assertTrue("0.0.0.0".matches(regex));
 		assertTrue("1.1.1.1".matches(regex));
 		assertTrue("99.99.12.09".matches(regex));
-		//assertTrue("100.199.200.255".matches(regex));
-		
+		assertTrue("100.199.200.255".matches(regex));
 		assertFalse(".1.2.3.4".matches(regex));
-		assertFalse("1.&2.3.4.".matches(regex));
+		assertFalse("1.2.3.4.".matches(regex));
+		assertFalse(".1.&2.3.4".matches(regex));
 		assertFalse("1.2.3".matches(regex));
-		assertFalse(".1.2.3.4.5".matches(regex));
-		
-		
+		assertFalse("1.2.3.4.5".matches(regex));
 	}
 
 }
